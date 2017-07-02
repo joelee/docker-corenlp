@@ -11,6 +11,6 @@ if [ -e "./$JARFILE" ]; then
     echo "Language file for '$1' already exists.."
 else
     echo "Language file for '$1' not found. Downloading..."
-    wget http://nlp.stanford.edu/software/$JARFILE
+    wget --no-verbose http://nlp.stanford.edu/software/$JARFILE
     exit $?
 fi

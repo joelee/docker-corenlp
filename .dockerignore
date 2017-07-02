@@ -1,4 +1,5 @@
 .git
 .gitignore
 /tmp/*
+/cache/*
 README.md
