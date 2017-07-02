@@ -1,13 +1,16 @@
 #!/bin/bash
 
-
-# http://nlp.stanford.edu/software/stanford-english-corenlp-2017-06-09-models.jar
-# http://nlp.stanford.edu/software/stanford-english-kbp-corenlp-2017-06-09-models.jar
-
 if [ -z "$1" ]; then
-    exit 1
+    exit 0
 fi
 
-cd /corenlp
-wget http://nlp.stanford.edu/software/stanford-$1-corenlp-2017-06-09-models.jar
-exit $?
+JARFILE="stanford-$1-corenlp-2017-06-09-models.jar"
+
+cd /corenlp/model
+if [ -e "./$JARFILE" ]; then
+    echo "Language file for '$1' already exists.."
+else
+    echo "Language file for '$1' not found. Downloading..."
+    wget http://nlp.stanford.edu/software/$JARFILE
+    exit $?
+fi

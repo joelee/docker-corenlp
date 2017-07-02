@@ -1,12 +1,10 @@
 #!/bin/bash
 
-if ( -z "$CLASSPATH" ); then
-    CLASSPATH="/corenlp"
-else
-    CLASSPATH="/corenlp:$CLASSPATH"
+cd /corenlp
+export CLASSPATH="$(find /corenlp/ -name '*.jar')"
+
+if [ -n "$LANGUAGE" ]; then
+    /corenlp/bin/getmodel.sh "$LANGUAGE"
 fi
 
-export CLASSPATH
-
-cd /corenlp
 java -mx4g -cp "*" edu.stanford.nlp.pipeline.StanfordCoreNLPServer -port 9000 -timeout 15000
